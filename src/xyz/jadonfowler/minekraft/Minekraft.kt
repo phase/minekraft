@@ -26,7 +26,7 @@ fun main(args : ArrayList<String>){
                     return ServerStatusInfo(
                         version = VersionInfo(ProtocolConstants.GAME_VERSION, ProtocolConstants.PROTOCOL_VERSION),
                         players = PlayerInfo(100, 0, GameProfile[0]),
-                        description = new TextMessage("Hello, World!"),
+                        description = new TextMessage("Minekraft Server!"),
                         icon = null
                     )
                 }
@@ -37,18 +37,18 @@ fun main(args : ArrayList<String>){
     client.getSession().setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY, 
         object : ServerInfoHandler() {
             override fun handle(session : Session, info : ServerStatusInfo) {
-                println("Version: " + info.getVersionInfo().getVersionName() + ", " + info.getVersionInfo().getProtocolVersion());
-                println("Player Count: " + info.getPlayerInfo().getOnlinePlayers() + " / " + info.getPlayerInfo().getMaxPlayers());
-                println("Players: " + Arrays.toString(info.getPlayerInfo().getPlayers()));
-                println("Description: " + info.getDescription().getFullText());
-                println("Icon: " + info.getIcon());
+                println("Version: ${info.getVersionInfo().getVersionName()}, ${info.getVersionInfo().getProtocolVersion()}");
+                println("Player Count: ${info.getPlayerInfo().getOnlinePlayers()} / ${info.getPlayerInfo().getMaxPlayers()}");
+                println("Players: ${Arrays.toString(info.getPlayerInfo().getPlayers())}");
+                println("Description: ${info.getDescription().getFullText()}");
+                println("Icon: ${info.getIcon()}");
             }
         })
 
     client.getSession().setFlag(ProtocolConstants.SERVER_PING_TIME_HANDLER_KEY,
         object : ServerPingTimeHandler() {
             override fun handle(session : Session, pingTime : Long) {
-                println("Server ping took " + pingTime + "ms");
+                println("Server ping took ${pingTime} ms");
         }
     });
 
@@ -83,7 +83,7 @@ fun login(){
             }
 
             override fun disconnected(event : DisconnectedEvent){
-                println("Disconnected: " + Message.fromString(event.getReason()).getFullText())
+                println("Disconnected: ${Message.fromString(event.getReason()).getFullText()}")
             }
         }
     )
