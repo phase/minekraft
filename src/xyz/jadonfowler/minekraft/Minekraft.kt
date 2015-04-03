@@ -2,7 +2,7 @@ package xyz.jadonfowler.minekraft
 
 import org.spacehq.*
 
-import kotlin.concurrent
+import kotlin.concurrent.*
 
 import java.net.Proxy
 import java.util.Arrays
@@ -36,7 +36,7 @@ fun main(args : ArrayList<String>){
     var client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
     client.getSession().setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY, 
         object : ServerInfoHandler() {
-            override fun handle(Session session, ServerStatusInfo info) {
+            override fun handle(session : Session, info : ServerStatusInfo) {
                 println("Version: " + info.getVersionInfo().getVersionName() + ", " + info.getVersionInfo().getProtocolVersion());
                 println("Player Count: " + info.getPlayerInfo().getOnlinePlayers() + " / " + info.getPlayerInfo().getMaxPlayers());
                 println("Players: " + Arrays.toString(info.getPlayerInfo().getPlayers()));
@@ -47,7 +47,7 @@ fun main(args : ArrayList<String>){
 
     client.getSession().setFlag(ProtocolConstants.SERVER_PING_TIME_HANDLER_KEY,
         object : ServerPingTimeHandler() {
-            override fun handle(Session session, long pingTime) {
+            override fun handle(session : Session, pingTime : Long) {
                 println("Server ping took " + pingTime + "ms");
         }
     });
@@ -65,5 +65,27 @@ fun main(args : ArrayList<String>){
 }
 
 fun login(){
+    val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
+    val client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
+    client.getSession().addListener(
+        object : SessionAdapter(){
+            override fun packetReceived(event : PacketReceivedEvent){
+                if(event.getPacket() is ServerJoinGamePacket){
+                    event.getSession().send(ClientChatPacket("This is a Minekraft Client!"))
+                }else if(event.getPacket() is ServerChatPacket){
+                    val message = event.<ServerChatPacket>getPacket().getMessage()
+                    println("Received Message: ${message.getFullText()}")
+                    if(message is TranslationMessage){
+                        println("Received Translation Components: ${Arrays.toString(message.getTranslationParams())}")
+                    }
+                    event.getSession().disconnect("Done") 
+                }
+            }
 
+            override fun disconnected(event : DisconnectedEvent){
+                println("Disconnected: " + Message.fromString(event.getReason()).getFullText())
+            }
+        }
+    )
+    client.getSession().connect()
 }
