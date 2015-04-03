@@ -8,20 +8,20 @@ This will be compatible with Minecraft, since we're making it in mostly the same
 ##TODO
 This is the TODO List. It's the order in which I'm going to do things.
 
-* Connections
+#####Connections
 - [ ] Client-Server Connection
 - [ ] Player Movement on Server
-* Backend
+#####Backend
 - [ ] Block/Item Backend
 - [ ] Chunk Backend
 - [ ] Entity Backend
 - [ ] Player Backend
-* Graphics
+#####Graphics
 - [ ] GUIs/Menus/HUD
 - [ ] Rendering Blocks
 - [ ] Rendering Entities
 - [ ] Rendering Players on Server
-* SinglePlayer
+#####SinglePlayer
 - [ ] World Loading
 - [ ] SSP-only things
 
