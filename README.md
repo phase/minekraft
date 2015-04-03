@@ -32,6 +32,6 @@ This is the TODO List. It's the order in which I'm going to do things.
 * [Kotlin](https://github.com/JetBrains/Kotlin) - For it's Java Interop.
 * [Java](https://www.java.com/) - For being a great language.
 * [LWJGL](https://github.com/LWJGL/lwjgl3) - For being free & open source.
-* [Netty](https://github.com/netty/netty) - For making networking easy peasy.
-* [Mojang](https://mojang.com) - For making such a great game.
+* [Steveice10](https://github.com/Steveice10/MCProtocolLib) - For making networking easy peasy.
 * [iLexiconn](https://github.com/ilexiconn) - For insipring me to make this.
+* [Mojang](https://mojang.com) - For making such a great game.
