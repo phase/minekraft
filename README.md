@@ -11,16 +11,19 @@ This is the TODO List. It's the order in which I'm going to do things.
 #####Connections
 - [ ] Client-Server Connection
 - [ ] Player Movement on Server
+
 #####Backend
 - [ ] Block/Item Backend
 - [ ] Chunk Backend
 - [ ] Entity Backend
 - [ ] Player Backend
+
 #####Graphics
 - [ ] GUIs/Menus/HUD
 - [ ] Rendering Blocks
 - [ ] Rendering Entities
 - [ ] Rendering Players on Server
+
 #####SinglePlayer
 - [ ] World Loading
 - [ ] SSP-only things
