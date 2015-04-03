@@ -36,19 +36,18 @@ fun main(args : ArrayList<String>){
     var client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
     client.getSession().setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY, 
         object : ServerInfoHandler() {
-            override fun handle(Session session, 
-                object : ServerStatusInfo info) {
-                    println("Version: " + info.getVersionInfo().getVersionName() + ", " + info.getVersionInfo().getProtocolVersion());
-                    println("Player Count: " + info.getPlayerInfo().getOnlinePlayers() + " / " + info.getPlayerInfo().getMaxPlayers());
-                    println("Players: " + Arrays.toString(info.getPlayerInfo().getPlayers()));
-                    println("Description: " + info.getDescription().getFullText());
-                    println("Icon: " + info.getIcon());
-                }
+            override fun handle(Session session, ServerStatusInfo info) {
+                println("Version: " + info.getVersionInfo().getVersionName() + ", " + info.getVersionInfo().getProtocolVersion());
+                println("Player Count: " + info.getPlayerInfo().getOnlinePlayers() + " / " + info.getPlayerInfo().getMaxPlayers());
+                println("Players: " + Arrays.toString(info.getPlayerInfo().getPlayers()));
+                println("Description: " + info.getDescription().getFullText());
+                println("Icon: " + info.getIcon());
+            }
         })
 
     client.getSession().setFlag(ProtocolConstants.SERVER_PING_TIME_HANDLER_KEY,
         object : ServerPingTimeHandler() {
-            ovrride fun handle(Session session, long pingTime) {
+            override fun handle(Session session, long pingTime) {
                 println("Server ping took " + pingTime + "ms");
         }
     });
@@ -56,9 +55,9 @@ fun main(args : ArrayList<String>){
     client.getSession().connect()
     while(client.getSession().isConnected()) {
         try {
-            Thread.sleep(5);
+            Thread.sleep(5)
         } catch(InterruptedException e) {
-            e.printStackTrace();
+            e.printStackTrace()
         }
     }
 
