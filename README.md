@@ -6,17 +6,22 @@ Minekraft is made using [Kotlin's Java interopabillity](http://kotlinlang.org/do
 This will be compatible with Minecraft, since we're making it in mostly the same way and using the same [packet system](http://wiki.vg).
 
 ##TODO
-This is the TODO List. It's the order in which I'm going to do things.
+This is the TODO List. It's also the order in which I'm going to do things.
 
 #####Connections
 - [ ] Client-Server Connection
 - [ ] Player Movement on Server
+- [ ] Client-Server Chat
+- [ ] Packet Hacks (Flying, FastBreak, etc.)
 
 #####Backend
 - [ ] Block/Item Backend
 - [ ] Chunk Backend
+- [ ] World Backend
 - [ ] Entity Backend
 - [ ] Player Backend
+- [ ] Get Player Inventory from Server
+- [ ] Parse data from Server
 
 #####Graphics
 - [ ] GUIs/Menus/HUD
@@ -27,6 +32,11 @@ This is the TODO List. It's the order in which I'm going to do things.
 #####SinglePlayer
 - [ ] World Loading
 - [ ] SSP-only things
+
+#####After it all
+- [ ] New Name
+- [ ] New Packet System
+- [ ] Original Server Software (Python?)
 
 ##Credits
 * [Kotlin](https://github.com/JetBrains/Kotlin) - For it's Java Interop.
