@@ -5,8 +5,10 @@ Minekraft is made using [Kotlin's Java interopabillity](http://kotlinlang.org/do
 
 This will be compatible with Minecraft, since we're making it in mostly the same way and using the same [packet system](http://wiki.vg).
 
-##TODO
-This is the TODO List. It's also the order in which I'm going to do things.
+##Timeline
+This is the Timeline/TODO List. It's the order in which I'm adding features.
+
+- [x] Project Started (1/4/15)
 
 #####Connections
 - [ ] Client-Server Connection
