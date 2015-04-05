@@ -2,8 +2,10 @@ package xyz.jadonfowler.minekraft
 
 import java.net.Proxy
 
-import org.spacehq.mc.protocol.MinecraftProtocol
-import org.spacehq.mc.protocol.data.message.Message
+import org.spacehq.mc.protocol.*
+import org.spacehq.mc.protocol.data.message.*
+import org.spacehq.mc.protocol.data.status.*
+import org.spacehq.mc.protocol.data.status.handler.*
 import org.spacehq.mc.protocol.packet.ingame.server.*
 import org.spacehq.mc.protocol.packet.ingame.client.*
 import org.spacehq.packetlib.*
@@ -12,8 +14,9 @@ import org.spacehq.packetlib.event.session.*
 import org.spacehq.packetlib.packet.*
 
 import java.io.*
+import java.util.*
 
-	val HOST = "localhost"
+	val HOST = "us.mineplex.com"
     val PORT = 26656
 	val PROXY : Proxy = Proxy.NO_PROXY
 	var USERNAME = "Username"
@@ -33,7 +36,9 @@ import java.io.*
 			line = br.readLine()
 		}
 		br.close()
-	
+		
+		status()
+		
 		println("> Authenticating...")
 		val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
 		
@@ -48,7 +53,7 @@ import java.io.*
 				override fun packetReceived(event : PacketReceivedEvent){
 					val packet : Packet = event.getPacket()
 					if(packet is ServerJoinGamePacket){
-						event.getSession().send(ClientChatPacket("This is a Minekraft Client!"))
+						event.getSession().send(ClientChatPacket("This is a Minekraft Client! https://github.com/phase/minekraft/"))
 					}else if(packet is ServerChatPacket){
 						val message = packet.getMessage()
 						println("Received Message: ${message.getFullText()}")
@@ -63,4 +68,32 @@ import java.io.*
 	
 		println("> Connecting...")
 		client.getSession().connect()
+	}
+
+	fun status(){
+		val protocol = MinecraftProtocol(ProtocolMode.STATUS)
+		val client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
+		println("> Checking Server Status...")
+		client.getSession().setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY,
+			object : ServerInfoHandler{
+				override fun handle(session : Session, info : ServerStatusInfo){
+					println(">> Version: ${info.getVersionInfo().getVersionName()}, ${info.getVersionInfo().getProtocolVersion()}");
+					println(">> Player Count: ${info.getPlayerInfo().getOnlinePlayers()} / ${info.getPlayerInfo().getMaxPlayers()}");
+					println(">> Players: ${Arrays.toString(info.getPlayerInfo().getPlayers())}");
+					println(">> Description: ${info.getDescription().getFullText()}");
+					println(">> Icon: ${info.getIcon()}");
+				}
+			}
+		)
+		client.getSession().setFlag(ProtocolConstants.SERVER_PING_TIME_HANDLER_KEY, 
+			object : ServerPingTimeHandler{
+				override fun handle(session : Session, pingTime : Long){
+					println(">> Server Ping: ${pingTime}")
+				}
+			}
+		)
+		client.getSession().connect()
+		while(client.getSession().isConnected()){
+			Thread.sleep(5)
+		}
 	}
