@@ -8,7 +8,7 @@ This will be compatible with Minecraft, since we're making it in mostly the same
 ##Timeline
 This is the Timeline/TODO List. It's the order in which I'm adding features.
 
-- [x] Project Started (1/4/15)
+- [x] Project Started (4/1/15)
 
 #####Connections
 - [ ] Client-Server Connection
