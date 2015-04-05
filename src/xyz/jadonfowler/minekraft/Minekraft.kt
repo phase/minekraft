@@ -1,7 +1,5 @@
 package xyz.jadonfowler.minekraft
 
-import java.net.Proxy
-
 import org.spacehq.mc.protocol.*
 import org.spacehq.mc.protocol.data.message.*
 import org.spacehq.mc.protocol.data.status.*
@@ -14,11 +12,12 @@ import org.spacehq.packetlib.event.session.*
 import org.spacehq.packetlib.packet.*
 
 import java.io.*
+import java.net.*
 import java.util.*
 
     var HOST = "oc.tc"
     var PORT : Int = 26656
-    val PROXY : Proxy = Proxy.NO_PROXY
+    var PROXY : Proxy = Proxy.NO_PROXY
     var USERNAME = "Username"
     var PASSWORD = "Password"
 
@@ -36,6 +35,8 @@ import java.util.*
                 HOST = line!!.split(":")[1]
             }else if(line!!.startsWith("Port")){
                 PORT = java.lang.Integer.parseInt(line!!.split(":")[1])
+            }else if(line!!.startsWith("Proxy")){
+                PROXY = Proxy(Proxy.Type.HTTP, InetSocketAddress(line!!.split(":")[1], java.lang.Integer.parseInt(line!!.split(":")[2])))
             }
             line = br.readLine()
         }
