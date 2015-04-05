@@ -16,7 +16,7 @@ val PROXY : Proxy = Proxy.NO_PROXY;
 val USERNAME = "Username";
 val PASSWORD = "Password";
 
-fun main2(args : Array<String>){
+fun main(args : Array<String>){
     println("Minekraft initializing...")
   /*if(CREATE_SERVER){
         var server = Server(HOST, PORT, MinecraftProtocol.class, TcpSessionFactory(PROXY))
