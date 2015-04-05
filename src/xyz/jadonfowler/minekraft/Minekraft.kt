@@ -22,7 +22,7 @@ import java.io.*
 	fun main(args : Array<String>) {
 		println("Minekraft Initializing...")
 		
-		val br : BufferedReader = BufferedReader(FileReader("config.txt"))
+		val br : BufferedReader = BufferedReader(FileReader("res/config.txt"))
 		var line : String? = br.readLine();
 		while(line != null){
 			if(line!!.startsWith("Username:")){
@@ -34,7 +34,10 @@ import java.io.*
 		}
 		br.close()
 	
+		println("> Authenticating...")
 		val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
+		
+		println("> Setting up Client...")
 		val client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
 		client.getSession().addListener(
 			object : SessionAdapter(){
@@ -57,5 +60,7 @@ import java.io.*
 				}
 			}
 		)
+	
+		println("> Connecting...")
 		client.getSession().connect()
 	}
