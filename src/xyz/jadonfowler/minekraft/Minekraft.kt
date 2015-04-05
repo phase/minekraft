@@ -16,8 +16,8 @@ import org.spacehq.packetlib.packet.*
 import java.io.*
 import java.util.*
 
-	val HOST = "us.mineplex.com"
-    val PORT = 26656
+	var HOST = "oc.tc"
+	var PORT : Int = 26656
 	val PROXY : Proxy = Proxy.NO_PROXY
 	var USERNAME = "Username"
 	var PASSWORD = "Password"
@@ -32,6 +32,10 @@ import java.util.*
 				USERNAME = line!!.split(":")[1]
 			}else if(line!!.startsWith("Password:")){
 				PASSWORD = line!!.split(":")[1]
+			}else if(line!!.startsWith("Server:")){
+				HOST = line!!.split(":")[1]
+			}else if(line!!.startsWith("Port")){
+				PORT = java.lang.Integer.parseInt(line!!.split(":")[1])
 			}
 			line = br.readLine()
 		}
