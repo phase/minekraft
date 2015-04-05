@@ -11,14 +11,29 @@ import org.spacehq.packetlib.tcp.*
 import org.spacehq.packetlib.event.session.*
 import org.spacehq.packetlib.packet.*
 
+import java.io.*
+
 	val HOST = "localhost"
-	val PORT = 26656
+    val PORT = 26656
 	val PROXY : Proxy = Proxy.NO_PROXY
-	val USERNAME = "Username"
-	val PASSWORD = "Password"
+	var USERNAME = "Username"
+	var PASSWORD = "Password"
 
 	fun main(args : Array<String>) {
 		println("Minekraft Initializing...")
+		
+		val br : BufferedReader = BufferedReader(FileReader("config.txt"))
+		var line : String? = br.readLine();
+		while(line != null){
+			if(line!!.startsWith("Username:")){
+				USERNAME = line!!.split(":")[1]
+			}else if(line!!.startsWith("Password:")){
+				PASSWORD = line!!.split(":")[1]
+			}
+			line = br.readLine()
+		}
+		br.close()
+	
 		val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
 		val client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
 		client.getSession().addListener(
