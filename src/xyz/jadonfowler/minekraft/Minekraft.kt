@@ -29,20 +29,20 @@ import java.util.*
         var line : String? = br.readLine();
         while(line != null){
             if(line!!.startsWith("Username:")){ // Username:Notch
-                USERNAME = line!!.split(":")[1]
+                USERNAME = line!!.split(":".toRegex())[1]
             }else if(line!!.startsWith("Password:")){ // Password:Derp
-                PASSWORD = line!!.split(":")[1]
+                PASSWORD = line!!.split(":".toRegex())[1]
             }else if(line!!.startsWith("Server:")){ // Server:minecraft.net:25565
-                HOST = line!!.split(":")[1]
-                PORT = java.lang.Integer.parseInt(line!!.split(":")[2])    
+                HOST = line!!.split(":".toRegex())[1]
+                PORT = java.lang.Integer.parseInt(line!!.split(":".toRegex())[2])
             }else if(line!!.startsWith("Proxy")){ // Proxy:123.456.789:860
-                PROXY = Proxy(Proxy.Type.HTTP, InetSocketAddress(line!!.split(":")[1], java.lang.Integer.parseInt(line!!.split(":")[2])))
+                PROXY = Proxy(Proxy.Type.HTTP, InetSocketAddress(line!!.split(":".toRegex())[1], java.lang.Integer.parseInt(line!!.split(":".toRegex())[2])))
             }
             line = br.readLine()
         }
         br.close()
         
-        //`status()
+        //status()
         
         println("> Authenticating...")
         val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
