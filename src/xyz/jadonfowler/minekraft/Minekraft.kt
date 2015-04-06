@@ -15,15 +15,16 @@ import java.io.*
 import java.net.*
 import java.util.*
 
-    var HOST = "oc.tc"
+    var HOST : String = "oc.tc"
     var PORT : Int = 26656
     var PROXY : Proxy = Proxy.NO_PROXY
-    var USERNAME = "Username"
-    var PASSWORD = "Password"
+    var USERNAME : String = "Username"
+    var PASSWORD : String = "Password"
 
     fun main(args : Array<String>) {
         println("Minekraft Initializing...")
         
+        println("> Loading Configuration...")
         val br : BufferedReader = BufferedReader(FileReader("res/config.txt"))
         var line : String? = br.readLine();
         while(line != null){
@@ -41,7 +42,7 @@ import java.util.*
         }
         br.close()
         
-        status()
+        //`status()
         
         println("> Authenticating...")
         val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
@@ -51,7 +52,7 @@ import java.util.*
         client.getSession().addListener(
             object : SessionAdapter(){
                 override fun connected(event : ConnectedEvent){
-                    println("> Connected!")
+                    println("> Connected to ${HOST}:${PORT}")
                 }
                 
                 override fun packetReceived(event : PacketReceivedEvent){
@@ -60,12 +61,12 @@ import java.util.*
                         event.getSession().send(ClientChatPacket("This is a Minekraft Client! https://github.com/phase/minekraft/"))
                     }else if(packet is ServerChatPacket){
                         val message = packet.getMessage()
-                        println("Received Message: ${message.getFullText()}")
+                        println("< Received Message: ${message.getFullText()}")
                     }
                 }
 
                 override fun disconnected(event : DisconnectedEvent){
-                    println("Disconected: ${Message.fromString(event.getReason()).getFullText()}")
+                    println("> Disconected: ${Message.fromString(event.getReason()).getFullText()}")
                 }
             }
         )
