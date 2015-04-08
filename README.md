@@ -11,6 +11,9 @@ This is the Timeline/TODO List. It's the order in which I'm adding features.
 - [x] Project Started (4/1/15)
 
 #####Connections
+- [x] Input & Output Networking  (4/7/15)
+- [ ] Packet Sending
+- [ ] Client-Server Setup
 - [ ] Client-Server Connection
 - [ ] Player Movement on Server
 - [ ] Client-Server Chat
