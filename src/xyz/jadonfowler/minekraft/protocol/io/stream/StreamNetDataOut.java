@@ -1,9 +1,11 @@
-package xyz.jadonfowler.minekraft.protocol.io;
+package xyz.jadonfowler.minekraft.protocol.io.stream;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
+
+import xyz.jadonfowler.minekraft.protocol.io.NetDataOut;
 
 public class StreamNetDataOut implements NetDataOut{
 

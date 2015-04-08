@@ -1,10 +1,12 @@
-package xyz.jadonfowler.minekraft.protocol.io;
+package xyz.jadonfowler.minekraft.protocol.io.stream;
 
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
+
+import xyz.jadonfowler.minekraft.protocol.io.NetDataIn;
 
 /**
  * NetDataIn implementation using InputStream.

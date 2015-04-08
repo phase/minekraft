@@ -1,0 +1,45 @@
+package xyz.jadonfowler.minekraft.protocol.io.bytebuf
+
+import xyz.jadonfowler.minekraft.protocol.io.NetDataIn
+
+import io.netty.buffer.ByteBuf
+
+public class ByteBufNetDataIn(val buf : ByteBuf) : NetDataIn {
+	
+	override fun readBoolean() : Boolean{
+		return buf.readBoolean()
+	}
+	
+	override fun readByte() : Byte{
+		return buf.readByte()
+	}
+	
+	override fun readUnsignedByte() : Int{
+		return buf.readUnsignedByte().toInt()
+	}
+	
+	override fun readShort() : Short{
+		return buf.readShort()
+	}
+	
+	override fun readUnsignedShort() : Int{
+		return buf.readUnsignedShort()
+	}
+	
+	override fun readChar() : Char{
+		return buf.readChar()
+	}
+	
+	override fun readInt() : Int{
+		return buf.readInt()
+	}
+	
+	override fun readVarInt() : Int{
+		var value = 0
+		var size = 0
+		var b = readByte();
+		
+		return value or ((b and 0x7f) shr (size * 7))
+	}
+	
+}
