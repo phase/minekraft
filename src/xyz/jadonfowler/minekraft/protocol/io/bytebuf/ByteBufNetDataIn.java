@@ -11,8 +11,8 @@ public class ByteBufNetDataIn implements NetDataIn {
 
 	private ByteBuf buf;
 
-	public ByteBufNetDataIn(ByteBuf buf) {
-		buf = buf;
+	public ByteBufNetDataIn(ByteBuf b) {
+		buf = b;
 	}
 
 	@Override
