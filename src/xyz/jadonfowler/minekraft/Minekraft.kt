@@ -48,7 +48,7 @@ import java.util.*
         val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
         
         println("> Setting up Client...")
-        val client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
+        val client = Client(HOST, PORT, protocol, TcpSessionFactory())
         client.getSession().addListener(
             object : SessionAdapter(){
                 override fun connected(event : ConnectedEvent){
