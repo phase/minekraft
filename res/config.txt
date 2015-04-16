@@ -1,2 +1,3 @@
 Username:Notch
 Password:Derp
+Server:oc.tc:25565
