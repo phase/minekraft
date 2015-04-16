@@ -16,7 +16,7 @@ import java.net.*
 import java.util.*
 
     var HOST : String = "oc.tc"
-    var PORT : Int = 26656
+    var PORT : Int = 25565
     var PROXY : Proxy = Proxy.NO_PROXY
     var USERNAME : String = "Username"
     var PASSWORD : String = "Password"
@@ -71,13 +71,13 @@ import java.util.*
             }
         )
 
-        println("> Connecting...")
+        println("> Connecting to ${HOST}:${PORT}...")
         client.getSession().connect()
     }
 
     fun status(){
         val protocol = MinecraftProtocol(ProtocolMode.STATUS)
-        val client = Client(HOST, PORT, protocol, TcpSessionFactory(PROXY))
+        val client = Client(HOST, PORT, protocol, TcpSessionFactory())
         println("> Checking Server Status...")
         client.getSession().setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY,
             object : ServerInfoHandler{
