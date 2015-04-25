@@ -42,6 +42,7 @@ This is the Timeline/TODO List. It's the order in which I'm adding features.
 - [ ] New Name
 - [ ] New Packet System
 - [ ] Original Server Software (Python?)
+- [ ] Mod API (Lua? JavaScript?)
 
 ##Credits
 * [Kotlin](https://github.com/JetBrains/Kotlin) - For it's Java Interop.
