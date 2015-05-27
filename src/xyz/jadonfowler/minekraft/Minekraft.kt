@@ -15,8 +15,8 @@ import java.io.*
 import java.net.*
 import java.util.*
 
-    var HOST : String = "oc.tc"
-    var PORT : Int = 25565
+    var HOST : String = "mort.openredstone.org"
+    var PORT : Int = 25569
     var PROXY : Proxy = Proxy.NO_PROXY
     var USERNAME : String = "Username"
     var PASSWORD : String = "Password"
