@@ -11,38 +11,36 @@ This is the Timeline/TODO List. It's the order in which I'm adding features.
 - [x] Project Started (4/1/15)
 
 #####Connections
-- [x] Input & Output Networking  (4/7/15)
-- [ ] Packet Sending
-- [ ] Client-Server Setup
-- [ ] Client-Server Connection
-- [ ] Player Movement on Server
+- [ ] Client-Server Connection (5/27/15)
 - [ ] Client-Server Chat
+- [ ] Player Movement on Server
 - [ ] Packet Hacks (Flying, FastBreak, etc.)
 
 #####Backend
-- [ ] Block/Item Backend
+- [ ] Block Backend
 - [ ] Chunk Backend
 - [ ] World Backend
 - [ ] Entity Backend
 - [ ] Player Backend
 - [ ] Get Player Inventory from Server
-- [ ] Parse data from Server
 
 #####Graphics
 - [ ] GUIs/Menus/HUD
+- [ ] Rendering Chunks
 - [ ] Rendering Blocks
 - [ ] Rendering Entities
 - [ ] Rendering Players on Server
 
 #####SinglePlayer
 - [ ] World Loading
-- [ ] SSP-only things
+- [ ] SP-only blocks
+- [ ] SP-only entities
 
 #####After it all
 - [ ] New Name
 - [ ] New Packet System
 - [ ] Original Server Software (Python?)
-- [ ] Mod API (Lua? JavaScript?)
+- [ ] Mod API (JavaScript? JRuby?)
 
 ##Credits
 * [Kotlin](https://github.com/JetBrains/Kotlin) - For it's Java Interop.
