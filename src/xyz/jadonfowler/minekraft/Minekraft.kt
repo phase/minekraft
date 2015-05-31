@@ -15,6 +15,8 @@ import java.io.*
 import java.net.*
 import java.util.*
 
+class Minekraft {
+
     var HOST : String = "mort.openredstone.org"
     var PORT : Int = 25569
     var PROXY : Proxy = Proxy.NO_PROXY
@@ -102,3 +104,4 @@ import java.util.*
             Thread.sleep(5)
         }
     }
+}
