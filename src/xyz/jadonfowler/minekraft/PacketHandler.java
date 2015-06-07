@@ -13,25 +13,27 @@ import org.spacehq.mc.protocol.packet.ingame.server.entity.player.*;
 import org.spacehq.mc.protocol.packet.ingame.server.entity.spawn.*;
 import org.spacehq.mc.protocol.packet.ingame.server.world.*;
 import org.spacehq.packetlib.event.session.*;
+import xyz.jadonfowler.minekraft.entity.*;
+import xyz.jadonfowler.minekraft.world.*;
 
 public class PacketHandler extends SessionAdapter {
     
     @Override public void packetReceived(PacketReceivedEvent event) {
         if (event.getPacket() instanceof ServerJoinGamePacket) {
             event.getSession().send(new ClientChatPacket("PhaseBot has joined the game."));
-            PhaseBot.getBot().entityId = event.<ServerJoinGamePacket> getPacket().getEntityId();
-        }0
+            Minekraft.getInstace().thePlayer.entityId = event.<ServerJoinGamePacket> getPacket().getEntityId();
+        }
         else if (event.getPacket() instanceof ServerPlayerPositionRotationPacket) {
-            PhaseBot.getBot().pos.x = event.<ServerPlayerPositionRotationPacket> getPacket().getX();
-            PhaseBot.getBot().pos.y = event.<ServerPlayerPositionRotationPacket> getPacket().getY();
-            PhaseBot.getBot().pos.z = event.<ServerPlayerPositionRotationPacket> getPacket().getZ();
-            PhaseBot.getBot().pitch = event.<ServerPlayerPositionRotationPacket> getPacket().getPitch();
-            PhaseBot.getBot().yaw = event.<ServerPlayerPositionRotationPacket> getPacket().getYaw();
-            System.out.println("Err, My Position: " + PhaseBot.getBot().pos.x + "," + PhaseBot.getBot().pos.y + ","
-                    + PhaseBot.getBot().pos.z);
+            Minekraft.getInstace().thePlayer.pos.x = event.<ServerPlayerPositionRotationPacket> getPacket().getX();
+            Minekraft.getInstace().thePlayer.pos.y = event.<ServerPlayerPositionRotationPacket> getPacket().getY();
+            Minekraft.getInstace().thePlayer.pos.z = event.<ServerPlayerPositionRotationPacket> getPacket().getZ();
+            Minekraft.getInstace().thePlayer.pitch = event.<ServerPlayerPositionRotationPacket> getPacket().getPitch();
+            Minekraft.getInstace().thePlayer.yaw = event.<ServerPlayerPositionRotationPacket> getPacket().getYaw();
+            System.out.println("Err, My Position: " + Minekraft.getInstace().thePlayer.pos.x + "," + Minekraft.getInstace().thePlayer.pos.y + ","
+                    + Minekraft.getInstace().thePlayer.pos.z);
             event.getSession().send(
-                    new ClientPlayerPositionRotationPacket(false, PhaseBot.getBot().pos.x, PhaseBot.getBot().pos.y,
-                            PhaseBot.getBot().pos.z, PhaseBot.getBot().pitch, PhaseBot.getBot().yaw));
+                    new ClientPlayerPositionRotationPacket(false, Minekraft.getInstace().thePlayer.pos.x, Minekraft.getInstace().thePlayer.pos.y,
+                            Minekraft.getInstace().thePlayer.pos.z, Minekraft.getInstace().thePlayer.pitch, Minekraft.getInstace().thePlayer.yaw));
         }
         else if (event.getPacket() instanceof ServerSpawnObjectPacket) {
             int entityId = event.<ServerSpawnObjectPacket> getPacket().getEntityId();
@@ -59,7 +61,7 @@ public class PacketHandler extends SessionAdapter {
         }
         else if (event.getPacket() instanceof ServerDestroyEntitiesPacket) {
             for (int i : event.<ServerDestroyEntitiesPacket> getPacket().getEntityIds()) {
-                if (Entity.getEntities().containsKey(i)) {
+                if (Entity.entities.containsKey(i)) {
                     Entity e = Entity.byId(i);
                     if (e instanceof EntityPlayer) EntityPlayer.players.remove((EntityPlayer) e);
                     e.remove();
@@ -75,9 +77,9 @@ public class PacketHandler extends SessionAdapter {
             ServerEntityMovementPacket p = event.<ServerEntityPositionRotationPacket> getPacket();
             int id = p.getEntityId();
             Entity e = Entity.byId(id);
-            e.x += p.getMovementX();
-            e.y += p.getMovementY();
-            e.z += p.getMovementZ();
+            e.pos.x += p.getMovementX();
+            e.pos.y += p.getMovementY();
+            e.pos.z += p.getMovementZ();
             e.pitch = p.getPitch();
             e.yaw = p.getYaw();
         }
@@ -85,9 +87,9 @@ public class PacketHandler extends SessionAdapter {
             ServerEntityTeleportPacket p = event.<ServerEntityTeleportPacket> getPacket();
             int id = p.getEntityId();
             Entity e = Entity.byId(id);
-            e.x = p.getX();
-            e.y = p.getY();
-            e.z = p.getZ();
+            e.pos.x = p.getX();
+            e.pos.y = p.getY();
+            e.pos.z = p.getZ();
             e.pitch = p.getPitch();
             e.yaw = p.getYaw();
         }
@@ -117,24 +119,9 @@ public class PacketHandler extends SessionAdapter {
         }
         else if (event.getPacket() instanceof ServerChatPacket) {
             Message message = event.<ServerChatPacket> getPacket().getMessage();
-            try {
-                // System.out.println(message.getFullText());
-                if (!message.getFullText().contains(": ")) return;
-                String c = message.getFullText().split(": ")[1];
-                if (!c.startsWith(".")) return;
-                if (!(message.getFullText().contains("Phase") || message.getFullText().contains("Voltz")
-                        || message.getFullText().contains("tyler") || message.getFullText().contains("_Skyden_"))) {
-                    // event.getSession().send(new
-                    // ClientChatPacket("You're not my master! D:"));
-                    return;
-                }
-                System.out.println("Performing command: " + c);
-                PhaseBot.getCommandManager().performCommand(c.split(" ")[0].replace(".", ""), c.split(" "),
-                        event.getSession());
-            }
-            catch (Exception e) {
-                // e.printStackTrace();
-            }
+            String text = message.getFullText();
+            //TODO Render chat
+            System.out.println(text);
         }
     }
 

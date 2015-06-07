@@ -21,7 +21,7 @@ public class EntityPlayer extends Entity {
             name = nf.call().get(uuid);
         }
         catch (Exception e) {
-            name = "NULL";
+            name = "Player";
         }
         players.add(this);
     }

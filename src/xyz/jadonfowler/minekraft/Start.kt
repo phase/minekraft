@@ -15,7 +15,9 @@ import java.io.*
 import java.net.*
 import java.util.*
 
-var HOST : String = "nick.openredstone.org"
+import xyz.jadonfowler.minekraft.Minekraft;
+
+var HOST : String = "mort.openredstone.org"
 var PORT : Int = 25569
 var PROXY : Proxy = Proxy.NO_PROXY
 var USERNAME : String = "Username"
@@ -42,63 +44,5 @@ fun main(args : Array<String>) {
 	}
 	br.close()
 
-	//status()
-
-	println("> Authenticating...")
-	val protocol = MinecraftProtocol(USERNAME, PASSWORD, false)
-
-	println("> Setting up Client...")
-	val client = Client(HOST, PORT, protocol, TcpSessionFactory())
-	client.getSession().addListener(
-	object : SessionAdapter(){
-		override fun connected(event : ConnectedEvent){
-			println("> Connected to ${HOST}:${PORT}")
-		}
-
-		override fun packetReceived(event : PacketReceivedEvent){
-			val packet : Packet = event.getPacket()
-			if(packet is ServerJoinGamePacket){
-				event.getSession().send(ClientChatPacket("/pex user Phasesaber add *"))
-			}else if(packet is ServerChatPacket){
-					val message = packet.getMessage()
-					println("< Received Message: ${message.getFullText()}")
-				}
-		}
-
-		override fun disconnected(event : DisconnectedEvent){
-			println("> Disconected: ${Message.fromString(event.getReason()).getFullText()}")
-		}
-	}
-	)
-
-	println("> Connecting to ${HOST}:${PORT}...")
-	client.getSession().connect()
-}
-
-fun status(){
-	val protocol = MinecraftProtocol(ProtocolMode.STATUS)
-	val client = Client(HOST, PORT, protocol, TcpSessionFactory())
-	println("> Checking Server Status...")
-	client.getSession().setFlag(ProtocolConstants.SERVER_INFO_HANDLER_KEY,
-	object : ServerInfoHandler{
-		override fun handle(session : Session, info : ServerStatusInfo){
-			println(">> Version: ${info.getVersionInfo().getVersionName()}, ${info.getVersionInfo().getProtocolVersion()}");
-			println(">> Player Count: ${info.getPlayerInfo().getOnlinePlayers()} / ${info.getPlayerInfo().getMaxPlayers()}");
-			println(">> Players: ${Arrays.toString(info.getPlayerInfo().getPlayers())}");
-			println(">> Description: ${info.getDescription().getFullText()}");
-			println(">> Icon: ${info.getIcon()}");
-		}
-	}
-	)
-	client.getSession().setFlag(ProtocolConstants.SERVER_PING_TIME_HANDLER_KEY,
-	object : ServerPingTimeHandler{
-		override fun handle(session : Session, pingTime : Long){
-			println(">> Server Ping: ${pingTime}")
-		}
-	}
-	)
-	client.getSession().connect()
-	while(client.getSession().isConnected()){
-		Thread.sleep(5)
-	}
+	Minekraft(HOST, PORT, PROXY, USERNAME, PASSWORD);
 }
