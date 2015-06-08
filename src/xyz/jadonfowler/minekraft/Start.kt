@@ -17,7 +17,7 @@ import java.util.*
 
 import xyz.jadonfowler.minekraft.Minekraft;
 
-var HOST : String = "mort.openredstone.org"
+var HOST : String = "nick.openredstone.org"
 var PORT : Int = 25569
 var PROXY : Proxy = Proxy.NO_PROXY
 var USERNAME : String = "Username"

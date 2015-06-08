@@ -9,6 +9,10 @@ public class EntityPlayer extends Entity {
     public UUID uuid;
     public String name;
 
+    public EntityPlayer() {
+        this(0, "", 0, 0, 0);
+    }
+
     public EntityPlayer(int i, UUID uuid, double x, double y, double z) {
         this(i, uuid, x, y, z, 0, 0);
     }
@@ -22,6 +26,23 @@ public class EntityPlayer extends Entity {
         }
         catch (Exception e) {
             name = "Player";
+        }
+        players.add(this);
+    }
+
+    public EntityPlayer(int i, String name, double x, double y, double z) {
+        this(i, name, x, y, z, 0, 0);
+    }
+
+    public EntityPlayer(int i, String name, double x, double y, double z, float yaw, float pitch) {
+        super(i, "PLAYER", x, y, z);
+        this.name = name;
+        UUIDFetcher uf = new UUIDFetcher(Arrays.asList(name));
+        try {
+            uuid = uf.call().get(name);
+        }
+        catch (Exception e) {
+            uuid = null;
         }
         players.add(this);
     }
