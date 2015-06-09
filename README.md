@@ -3,26 +3,26 @@ Minecraft remade in Kotlin!
 
 Minekraft is made using [Kotlin's Java interopabillity](http://kotlinlang.org/docs/reference/java-interop.html), which allows us to use Java classes in Kotlin & Kotlin classes in Java.
 
-This will be compatible with Minecraft, since we're making it in mostly the same way and using the same [packet system](http://wiki.vg).
+This will be compatible with Minecraft, since I'm making it in mostly the same way and using the same [packet system](http://wiki.vg).
 
 ##Timeline
-This is the Timeline/TODO List. It's the order in which I'm adding features.
+This is the Timeline/TODO List.
 
 - [x] Project Started (4/1/15)
 
 #####Connections
-- [ ] Client-Server Connection (5/27/15)
+- [x] Client-Server Connection (5/27/15)
 - [ ] Client-Server Chat
 - [ ] Player Movement on Server
 - [ ] Packet Hacks (Flying, FastBreak, etc.)
 
 #####Backend
-- [ ] Block Backend
-- [ ] Chunk Backend
-- [ ] World Backend
-- [ ] Entity Backend
-- [ ] Player Backend
-- [ ] Get Player Inventory from Server
+- [x] Block Backend (6/5/15)
+- [x] Chunk Backend (6/5/15)
+- [ ] World Backend 
+- [x] Entity Backend (5/31/15)
+- [x] Player Backend (6/5/15)
+- [ ] Get Player Inventory from Server 
 
 #####Graphics
 - [ ] GUIs/Menus/HUD
@@ -30,6 +30,7 @@ This is the Timeline/TODO List. It's the order in which I'm adding features.
 - [ ] Rendering Blocks
 - [ ] Rendering Entities
 - [ ] Rendering Players on Server
+- [ ] Custom 3d models
 
 #####SinglePlayer
 - [ ] World Loading
@@ -39,13 +40,13 @@ This is the Timeline/TODO List. It's the order in which I'm adding features.
 #####After it all
 - [ ] New Name
 - [ ] New Packet System
-- [ ] Original Server Software (Python?)
+- [ ] Original Server Software (Python? Java?)
 - [ ] Mod API (JavaScript? JRuby?)
 
 ##Credits
 * [Kotlin](https://github.com/JetBrains/Kotlin) - For it's Java Interop.
 * [Java](https://www.java.com/) - For being a great language.
-* [LWJGL](https://github.com/LWJGL/lwjgl3) - For being free & open source.
+* [LWJGL](https://github.com/LWJGL/lwjgl) - For being free & open source.
 * [Steveice10](https://github.com/Steveice10/MCProtocolLib) - For making networking easy peasy.
 * [iLexiconn](https://github.com/ilexiconn) - For insipring me to make this.
 * [Mojang](https://mojang.com) - For making such a great game.
