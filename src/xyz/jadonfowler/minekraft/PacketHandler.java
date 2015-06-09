@@ -20,7 +20,7 @@ public class PacketHandler extends SessionAdapter {
     
     @Override public void packetReceived(PacketReceivedEvent event) {
         if (event.getPacket() instanceof ServerJoinGamePacket) {
-            event.getSession().send(new ClientChatPacket("/pex user Phasesaber add *"));
+            event.getSession().send(new ClientChatPacket("Minekraft client has joined the game!"));
             Minekraft.getInstance().thePlayer.entityId = event.<ServerJoinGamePacket> getPacket().getEntityId();
         }
         else if (event.getPacket() instanceof ServerPlayerPositionRotationPacket) {
