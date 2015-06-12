@@ -1,1 +1,4 @@
-*.java linguist-language=Kotlin
+*/kotlin/* linguist-language=Kotlin
+*/groovy/* linguist-language=Groovy
+*/scala/* linguist-language=Scala
+*/java/* linguist-language=Java
