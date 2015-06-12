@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.12.200'
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'groovy'
+apply plugin: 'scala'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.200'
+    compile 'org.scala-lang:scala-library:2.11.1'
+    compile 'org.codehaus.groovy:groovy-all:2.3.10'
+    
+    compile 'org.lwjgl.lwjgl:lwjgl:2.9.3'
+    compile 'org.spacehq:mcprotocollib:1.8-SNAPSHOT'
+    compile 'com.google.guava:guava:18.0'
+    //compile GLUtils? TODO: put in repo itself
+}

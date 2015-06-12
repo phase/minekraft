@@ -45,7 +45,7 @@ nb-configuration.xml
 #Java
 *.class
 .mtj.tmp/
-*.jar
+#*.jar
 *.war
 *.ear
 #http://www.java.com/en/download/help/error_hotspot.xml
