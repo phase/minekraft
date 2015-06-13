@@ -1,7 +1,8 @@
 package xyz.jadonfowler.minekraft.launcher;
 
-import xyz.jadonfowler.minekraft.Minekraft;
+//import xyz.jadonfowler.minekraft.Minekraft
 import javax.swing.*
+import java.awt.Dimension
 
 class Launcher {
     static void main(String[] args) {

@@ -1,27 +1,57 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+          url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.12.200'
+        classpath "gradle.plugin.com.stehno:gradle-natives:0.2.3"
     }
 }
 
+// Kotlin/ -> Java/ -> Groovy/ -> Scala/
+apply plugin: 'java'
 apply plugin: 'kotlin'
 apply plugin: 'groovy'
 apply plugin: 'scala'
+
+apply plugin: 'com.stehno.natives'
+
+apply plugin: 'application'
+mainClassName = 'xyz.jadonfowler.minekraft.MinekraftPackage'
+//mainClassName = 'xyz.jadonfowler.minekraft.launcher.Launcher'
+
+natives {
+    jars = [ 
+        'lwjgl-platform-2.9.1-natives-windows', 
+        'lwjgl-platform-2.9.1-natives-osx', 
+        'lwjgl-platform-2.9.1-natives-linux' 
+    ]
+    platforms = 'windows'
+}
 
 repositories {
     mavenCentral()
 }
 
+run {
+    systemProperty 'java.library.path', file( 'build/natives/windows' )
+}
+
 dependencies {
+    //Languages
     compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.200'
     compile 'org.scala-lang:scala-library:2.11.1'
     compile 'org.codehaus.groovy:groovy-all:2.3.10'
     
-    compile 'org.lwjgl.lwjgl:lwjgl:2.9.3'
-    compile 'org.spacehq:mcprotocollib:1.8-SNAPSHOT'
-    compile 'com.google.guava:guava:18.0'
-    //compile GLUtils? TODO: put in repo itself
+    //Maven Dependencies
+    //compile 'org.lwjgl.lwjgl:lwjgl:2.9.3'
+    //compile 'org.lwjgl.lwjgl:lwjgl-util:2.9.3'
+    //compile 'org.spacehq:mcprotocollib:1.8-SNAPSHOT'
+    //compile 'com.google.guava:guava:18.0'
+    
+    //Local Dependencies
+    compile fileTree(dir: 'lib', include: ['*.jar'])
 }

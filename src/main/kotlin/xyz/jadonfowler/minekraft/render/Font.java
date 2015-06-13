@@ -1,9 +1,10 @@
 package xyz.jadonfowler.minekraft.render;
 
-
 public class Font {
+
     private Texture fontTexture;
-    public Texture loadFont(String location){
-        
+
+    public Texture loadFont(String location) {
+        return null;
     }
 }
